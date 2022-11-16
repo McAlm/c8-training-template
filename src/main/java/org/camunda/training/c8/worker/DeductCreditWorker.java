@@ -1,7 +1,6 @@
 package org.camunda.training.c8.worker;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;

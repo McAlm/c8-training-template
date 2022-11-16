@@ -12,7 +12,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0xau5gz" sourceRef="Activity_1svnjq1" targetRef="Gateway_1dk8c2r" />
     <bpmn:sequenceFlow id="Flow_04il406" name="No" sourceRef="Gateway_1dk8c2r" targetRef="Activity_1wbctmx">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(orderTotal &lt;= customerCredit)</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=remainingAmount &gt; 0</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_0arjpf3" name="Payed">
       <bpmn:incoming>Flow_1bluyw6</bpmn:incoming>
@@ -20,7 +20,7 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1bluyw6" sourceRef="Activity_1wbctmx" targetRef="Event_0arjpf3" />
     <bpmn:sequenceFlow id="Flow_0k76m38" name="Yes" sourceRef="Gateway_1dk8c2r" targetRef="Event_0arjpf3">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=orderTotal &lt;= customerCredit</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=remainingAmount &lt;= 0</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="Activity_1svnjq1" name="Deduct credit">
       <bpmn:extensionElements>

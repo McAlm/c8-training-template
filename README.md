@@ -1,5 +1,6 @@
 
-## Exercise 6
+## Exercise 7
+Use Message Events for loose coupling
 
 ### run 
 ```source /path/to/your/c8-saas-credentials```

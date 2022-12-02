@@ -1,5 +1,7 @@
 
-## Exercise 6
+## Exercise 10
+
+Use a UserTask to resolve issues
 
 ### run 
 ```source /path/to/your/c8-saas-credentials```

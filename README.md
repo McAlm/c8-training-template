@@ -1,5 +1,7 @@
 
-## Exercise 6
+## Exercise 8
+
+Catch Exception and handle failures
 
 ### run 
 ```source /path/to/your/c8-saas-credentials```

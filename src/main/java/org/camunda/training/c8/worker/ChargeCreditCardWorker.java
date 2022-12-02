@@ -29,14 +29,20 @@ public class ChargeCreditCardWorker {
             LOG.error("Credit Card has expired!");
             jobClient//
                     .newFailCommand(job)//
-                    .retries(job.getRetries()-1)//
-                    .retryBackoff(Duration.ofSeconds(5))
+                    .retries(0)
+                    //retries do not make sense here since a retry would not change the expiryDate
+                    //.retries(job.getRetries() - 1)//
+                    //.retryBackoff(Duration.ofSeconds(5))
                     .errorMessage("Credit Card has expired!")//
                     .send()//
-                    .join();
+                    .exceptionally((throwable -> {
+                        throw new RuntimeException("Could not send job failure", throwable);
+                    }));
         } else {
             chargeAmount(cccData);
-            jobClient.newCompleteCommand(job).send().join();
+            jobClient.newCompleteCommand(job).send().exceptionally((throwable -> {
+                throw new RuntimeException("Could not complete job", throwable);
+            }));
         }
     }
 

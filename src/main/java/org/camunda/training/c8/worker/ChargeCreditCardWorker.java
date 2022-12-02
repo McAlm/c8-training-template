@@ -2,7 +2,6 @@ package org.camunda.training.c8.worker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,18 +24,30 @@ public class ChargeCreditCardWorker {
             autoComplete = false, //
             fetchVariables = { "cardNumber", "cvc", "expiryDate", "remainingAmount" })
     public void chargeCreditCard(JobClient jobClient, ActivatedJob job, @VariablesAsType ChargeCreditCardData cccData) {
-        if (cardExpired(cccData.getExpiryDate())) {
-            LOG.error("Credit Card has expired!");
+        try {
+            handleChargeCreditCard(jobClient, job, cccData);
+        } catch (Exception e) {
             jobClient//
                     .newFailCommand(job)//
                     .retries(0)
-                    //retries do not make sense here since a retry would not change the expiryDate
-                    //.retries(job.getRetries() - 1)//
-                    //.retryBackoff(Duration.ofSeconds(5))
-                    .errorMessage("Credit Card has expired!")//
+                    .errorMessage("Could not charge credit card: " + e.getMessage())//
                     .send()//
                     .exceptionally((throwable -> {
                         throw new RuntimeException("Could not send job failure", throwable);
+                    }));
+        }
+    }
+
+    private void handleChargeCreditCard(JobClient jobClient, ActivatedJob job, ChargeCreditCardData cccData) {
+        if (cardExpired(cccData.getExpiryDate())) {
+            LOG.error("Credit Card has expired!");
+
+            jobClient.newThrowErrorCommand(job)//
+                    .errorCode("creditCardChargeError")//
+                    .errorMessage("Credit Card has expired!")//
+                    .send()//
+                    .exceptionally((throwable -> {
+                        throw new RuntimeException("Could not send BPMN Error ", throwable);
                     }));
         } else {
             chargeAmount(cccData);
@@ -77,6 +88,7 @@ public class ChargeCreditCardWorker {
     }
 
     private void chargeAmount(ChargeCreditCardData cccData) {
-        LOG.info("charging CreditCard: " + cccData);
+        LOG.info("eventually charging the CreditCard: " + cccData.getCardNumber() + " with amount "
+                + cccData.getRemainingAmount());
     }
 }

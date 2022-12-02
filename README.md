@@ -1,5 +1,6 @@
 
-## Exercise 6
+## Exercise 11
+Introducing DMN to calculate an OrderDiscount
 
 ### run 
 ```source /path/to/your/c8-saas-credentials```

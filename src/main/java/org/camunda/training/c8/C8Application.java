@@ -8,7 +8,7 @@ import io.camunda.zeebe.spring.client.annotation.Deployment;
 
 @SpringBootApplication
 @EnableZeebeClient
-@Deployment(resources = "classpath:bpmn/payment.bpmn")
+@Deployment(resources = "classpath:bpmn/*.bpmn")
 public class C8Application {
 
 	public static void main(String[] args) {

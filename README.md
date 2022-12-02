@@ -7,4 +7,4 @@
 ```mvn clean install spring-boot:run```
 
 ### start a process instance
-```zbctl create instance payment --variables "{\"orderTotal\": 45.99, \"customerId\": \"cust30\", \"cardNumber\": \"1234 5678\", \"cvc\": \"123\", \"expiryDate\": \"09/24\"}"```
+```zbctl publish message orderMessage --correlationKey "order-1" --variables "{\"orderId\":\"order-1\", \"orderTotal\": 45.99, \"customerId\": \"cust30\", \"cardNumber\": \"1234 5678\", \"cvc\": \"123\", \"expiryDate\": \"09/24\"}"```

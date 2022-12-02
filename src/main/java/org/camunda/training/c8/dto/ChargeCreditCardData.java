@@ -4,9 +4,28 @@ import java.math.BigDecimal;
 
 public class ChargeCreditCardData {
 
-    private String cardNumber, cvc, expiryDate;
-    private BigDecimal remainingAmount;
+    private BigDecimal remainingAmount, orderTotal;
+    private String cardNumber, cvc, expiryDate, customerId, orderId;
 
+    public String getOrderId() {
+        return orderId;
+    }
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    public String getCustomerId() {
+        return customerId;
+    }
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public BigDecimal getOrderTotal() {
+        return orderTotal;
+    }
+    public void setOrderTotal(BigDecimal orderTotal) {
+        this.orderTotal = orderTotal;
+    }
     public String getCardNumber() {
         return cardNumber;
     }
@@ -26,17 +45,16 @@ public class ChargeCreditCardData {
         this.expiryDate = expiryDate;
     }
 
-    @Override
-    public String toString() {
-        return "ChargeCreditCardData [cardNumber=" + cardNumber + ", cvc=" + cvc + ", expiryDate=" + expiryDate
-                + ", remainingAmount=" + remainingAmount.toPlainString() + "]";
-    }
     public BigDecimal getRemainingAmount() {
         return remainingAmount;
     }
     public void setRemainingAmount(BigDecimal remainingAmount) {
         this.remainingAmount = remainingAmount;
     }
-
-    
+    @Override
+    public String toString() {
+        return "ChargeCreditCardData [remainingAmount=" + remainingAmount + ", orderTotal=" + orderTotal
+                + ", cardNumber=" + cardNumber + ", cvc=" + cvc + ", expiryDate=" + expiryDate + ", customerId="
+                + customerId + ", orderId=" + orderId + "]";
+    }
 }

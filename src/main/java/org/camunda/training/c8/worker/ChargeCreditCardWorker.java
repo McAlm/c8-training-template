@@ -12,7 +12,7 @@ public class ChargeCreditCardWorker {
     Logger LOG = LoggerFactory.getLogger(ChargeCreditCardWorker.class);
 
     @JobWorker(type = "chargeCreditCard", autoComplete = true)
-    public void deductCredit() {
+    public void chargeCreditCard() {
         LOG.info("charging credit card...");
     }
 

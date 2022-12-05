@@ -16,7 +16,7 @@ public class ChargeCreditCardWorker {
     @JobWorker(type = "chargeCreditCard", //
             autoComplete = true, //
             fetchVariables = { "cardNumber", "cvc", "expiryDate", "remainingAmount" })
-    public void deductCredit(@VariablesAsType ChargeCreditCardData cccData) {
+    public void chargeCreditCard(@VariablesAsType ChargeCreditCardData cccData) {
         chargeAmount(cccData);
     }
 

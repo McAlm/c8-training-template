@@ -1,0 +1,81 @@
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "name": "TestConnector",
+  "id": "8b08b1ae-531c-4bc0-a0cd-d709b99e0dcf",
+  "appliesTo": [
+    "bpmn:Task"
+  ],
+  "groups": [
+    {
+      "id": "inputParameter",
+      "label": "Input Parameter"
+    },
+    {
+      "id": "outputParameter",
+      "label": "OutputParameter"
+    }
+  ],
+  "properties": [
+    {
+      "type": "Hidden",
+      "value": "com.camunda.training.c8.TestConnector:1",
+      "binding": {
+        "type": "zeebe:taskDefinition:type"
+      }
+    },
+    {
+      "label": "Param 1",
+      "group": "inputParameter",
+      "type": "String",
+      "optional": true,
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "param1"
+      }
+    },
+    {
+      "label": "Param 2",
+      "group": "inputParameter",
+      "type": "String",
+      "optional": true,
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "param2"
+      }
+    },
+    {
+      "label": "Password",
+      "group": "inputParameter",
+      "type": "String",
+      "optional": false,
+      "feel": "optional",
+      "binding": {
+        "type": "zeebe:input",
+        "name": "someSecretPassword"
+      }
+    },
+    {
+      "label": "Result Variable",
+      "description": "Name of variable to store the response in",
+      "group": "outputParameter",
+      "type": "String",
+      "binding": {
+        "type": "zeebe:taskHeader",
+        "key": "resultVariable"
+      }
+    },
+    {
+      "label": "Result Expression",
+      "description": "Expression to map the response into process variables",
+      "group": "outputParameter",
+      "type": "Text",
+      "feel": "required",
+      "binding": {
+        "type": "zeebe:taskHeader",
+        "key": "resultExpression"
+      }
+    }
+  ]
+}

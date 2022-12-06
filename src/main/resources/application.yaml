@@ -3,5 +3,7 @@ zeebe:
     cloud:
       region: bru-2
       clusterId: 9f7e711d-8ac9-4ffd-ab16-1cbfe8e3a50f
-      clientId: pVlml.823BiwFrV1EG8v7gQ5aRkz-zd.
-      clientSecret: 0MwYeVIPL2O9zh1Fdxd70sDIktp_pbWDt4usNgCOD6KFWVg5yBpIlfDZvs9wBTa3
+      clientId: rD50-FtqNWhA4uGV0o4EW5-o7ES0J~.B
+      clientSecret: ufOrTDgehSx.OJUoxF1fkHC9IU..BB6bJalbxl-abemXq.wDUpNv.3XB7.A9uMK4
+
+someSecretPassword: jkl&jo8987(+998?

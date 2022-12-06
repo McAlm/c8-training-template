@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="4f1e9f1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="73e73937-6396-46f3-88ea-de21de5ae1d0">
+  <bpmn:process id="incentroConnectorDemo" name="Incentro Connector Demo" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0bz2wgv</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0bz2wgv" sourceRef="StartEvent_1" targetRef="Activity_0fs660z" />
+    <bpmn:endEvent id="Event_1chcbjg">
+      <bpmn:incoming>Flow_1udug05</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1udug05" sourceRef="Activity_0fs660z" targetRef="Event_1chcbjg" />
+    <bpmn:serviceTask id="Activity_0fs660z" name="Run DemoConnector" zeebe:modelerTemplate="8b08b1ae-531c-4bc0-a0cd-d709b99e0dcf" zeebe:modelerTemplateVersion="1670360427680">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="com.camunda.training.c8.TestConnector:1" />
+        <zeebe:ioMapping>
+          <zeebe:input source="asSecondParameter" target="param2" />
+          <zeebe:input source="=&#34;secrets.someSecretPassword&#34;" target="someSecretPassword" />
+          <zeebe:input source="aFirstParameter" target="param1" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="connres" />
+          <zeebe:header key="resultExpression" value="={&#10;  a: response.connectorResultA,&#10;  b: response.connectorResultB&#10;}" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0bz2wgv</bpmn:incoming>
+      <bpmn:outgoing>Flow_1udug05</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="incentroConnectorDemo">
+      <bpmndi:BPMNShape id="Activity_17594nk_di" bpmnElement="Activity_0fs660z">
+        <dc:Bounds x="240" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1chcbjg_di" bpmnElement="Event_1chcbjg">
+        <dc:Bounds x="412" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1udug05_di" bpmnElement="Flow_1udug05">
+        <di:waypoint x="340" y="130" />
+        <di:waypoint x="412" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bz2wgv_di" bpmnElement="Flow_0bz2wgv">
+        <di:waypoint x="188" y="130" />
+        <di:waypoint x="240" y="130" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
